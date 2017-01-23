@@ -18,5 +18,5 @@ public class Item: NSManagedObject {
         
         self.created = NSDate()
     }
-    
+
 }
