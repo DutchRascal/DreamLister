@@ -228,6 +228,9 @@
                                 <state key="normal" title="Save Item">
                                     <color key="titleColor" red="0.87620578719999997" green="0.87620578719999997" blue="0.87620578719999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="savePressed:" destination="SkQ-Qz-dQb" eventType="touchUpInside" id="tiw-5Y-0EC"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
