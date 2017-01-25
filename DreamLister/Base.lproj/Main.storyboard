@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pzf-2H-bI9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pzf-2H-bI9">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -35,7 +35,7 @@
                                 <rect key="frame" x="16" y="132" width="288" height="436"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="150" id="F63-aC-Ucl" customClass="ItemCell" customModule="DreamLister" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="150" id="F63-aC-Ucl" customClass="ItemCell" customModule="DreamLister" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="288" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F63-aC-Ucl" id="mU0-z0-372">
@@ -158,7 +158,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagePick" translatesAutoresizingMaskIntoConstraints="NO" id="y6j-db-nqI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagePick" translatesAutoresizingMaskIntoConstraints="NO" id="y6j-db-nqI">
                                 <rect key="frame" x="16" y="72" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="M0f-ej-PUD"/>
@@ -171,6 +171,9 @@
                                     <constraint firstAttribute="width" constant="100" id="66Y-NM-sDR"/>
                                     <constraint firstAttribute="height" constant="100" id="8jm-DM-O6u"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="addImage:" destination="SkQ-Qz-dQb" eventType="touchUpInside" id="t7j-5u-eZe"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6nX-uf-jBf" customClass="CustomTextField" customModule="DreamLister" customModuleProvider="target">
                                 <rect key="frame" x="124" y="82" width="180" height="40"/>
@@ -261,12 +264,16 @@
                     <navigationItem key="navigationItem" title="Add/Edit" id="235-Ha-MGP">
                         <barButtonItem key="rightBarButtonItem" systemItem="trash" id="XuW-UL-1i3">
                             <color key="tintColor" red="1" green="0.018300464419999999" blue="0.21603750269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="deletePressed:" destination="SkQ-Qz-dQb" id="fDi-hR-AtN"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="detailsField" destination="sEP-Ft-gBQ" id="QXM-sO-2ad"/>
                         <outlet property="priceField" destination="obo-Yn-dvy" id="q9d-X9-m77"/>
                         <outlet property="storePicker" destination="2DA-De-Mrc" id="lg0-Hx-fFr"/>
+                        <outlet property="thumgImg" destination="y6j-db-nqI" id="xIg-mc-I9t"/>
                         <outlet property="titleField" destination="6nX-uf-jBf" id="43D-Ze-iCF"/>
                     </connections>
                 </viewController>
