@@ -21,8 +21,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         
         tableView.delegate = self
         tableView.dataSource = self
-    
-//        generateTestData()
+        
+        //        generateTestData()
         attemptFetch()
         
     }
@@ -93,9 +93,24 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         
         let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
         let dateSort = NSSortDescriptor(key: "created", ascending: false)
-        fetchRequest.sortDescriptors = [dateSort]
+        let priceSort = NSSortDescriptor(key: "price", ascending: true)
+        let titleSort = NSSortDescriptor(key: "title", ascending: true)
         
-        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        if segment.selectedSegmentIndex == 0 {
+            
+            fetchRequest.sortDescriptors = [dateSort]
+            
+        } else if segment.selectedSegmentIndex == 1 {
+            
+            fetchRequest.sortDescriptors = [priceSort]
+            
+        } else if segment.selectedSegmentIndex == 2 {
+            
+            fetchRequest.sortDescriptors = [titleSort]
+            
+        }
+        
+         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         controller.delegate = self
         self.controller = controller
         
@@ -106,6 +121,13 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
             let error = error as NSError
             print("\(error)")
         }
+    }
+    
+    @IBAction func segmentChange(_ sender: Any) {
+        
+        attemptFetch()
+        tableView.reloadData()
+        
     }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -157,12 +179,12 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         item2.title = "Bose Headphones"
         item2.price = 300
         item2.details = "But man, its so nice to be able to black out everyone with the noise canceling tech"
-
+        
         let item3 = Item(context: context)
         item3.title = "Tesla Model S"
         item3.price = 110000
         item3.details = "Oh man this is a beautiful car. And one day, I will own it"
-
+        
         ad.saveContext()
         
     }
