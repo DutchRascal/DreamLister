@@ -16,6 +16,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
     @IBOutlet weak var priceField: CustomTextField!
     @IBOutlet weak var detailsField: CustomTextField!
     @IBOutlet weak var thumgImg: UIImageView!
+    @IBOutlet weak var typeField: CustomTextField!
     
     var stores = [Store]()
     var itemToEdit: Item?
@@ -28,6 +29,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
             topItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         }
         
+        detailsField.textAlignment = .natural
         storePicker.delegate = self
         storePicker.dataSource = self
         imagePicker = UIImagePickerController()
@@ -109,6 +111,9 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         let picture = Image(context: context)
         picture.image = thumgImg.image
         
+        let detailType = ItemType(context: context)
+        detailType.type = typeField.text
+        
         if itemToEdit == nil {
             
             item = Item(context: context)
@@ -117,6 +122,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         }
         
         item.toImage = picture
+        item.toItemType = detailType
 
         if let title = titleField.text {
             item.title = title
@@ -129,6 +135,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         if let details = detailsField.text {
             item.details = details
         }
+        
         
         item.toStore = stores[storePicker.selectedRow(inComponent: 0)]
         
@@ -145,9 +152,13 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
             titleField.text = item.title
             priceField.text = "\(item.price)"
             detailsField.text = item.details
+
+            typeField.text = item.toItemType?.type
             
             thumgImg.image = item.toImage?.image as? UIImage
             
+            
+            ///detailTYpe
             if let store = item.toStore {
                 
                 var index = 0
